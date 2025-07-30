@@ -1,0 +1,17 @@
+[
+    {
+        "keyword": "bitcoin",
+        "tweet_count": 120,
+        "sentiment_score": 0.22
+    },
+    {
+        "keyword": "GME",
+        "tweet_count": 85,
+        "sentiment_score": -0.15
+    },
+    {
+        "keyword": "LUNA",
+        "tweet_count": 40,
+        "sentiment_score": 0.01
+    }
+]
