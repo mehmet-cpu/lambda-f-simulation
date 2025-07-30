@@ -56,7 +56,7 @@ sentiment_data = {
 
 lambda_F_data = {
     'Varlık': ['Bitcoin', 'GME', 'LUNA'],
-    'λF Değeri': [0.6, 0.4, 0.72]
+    'λF Value': [0.6, 0.4, 0.72]
 }
 
 df_sentiment = pd.DataFrame(sentiment_data)
@@ -71,10 +71,10 @@ col1, col2 = st.columns(2)
 with col1:
     st.markdown('### 💬 Sentiment Scores')
     fig1, ax1 = plt.subplots()
-    ax1.bar(df_sentiment['Varlık'], df_sentiment['Sentiment Scores'], color='skyblue')
+    ax1.bar(df_sentiment['Varlık'], df_sentiment['Sentiment Skoru'], color='skyblue')
     ax1.set_ylim([-1, 1])
     ax1.axhline(0, color='gray', linestyle='--')
-    ax1.set_ylabel('Sentiment Scores')
+    ax1.set_ylabel('Sentiment Skoru')
     st.pyplot(fig1)
 
 with col2:
