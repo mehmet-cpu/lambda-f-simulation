@@ -13,7 +13,7 @@ def load_mock_data(file_path='mock_data.json'):
     with open(file_path, 'r') as f:
         return json.load(f)
 
-# Demo mod
+
 use_mock = True
 
 if use_mock:
@@ -88,13 +88,13 @@ with col2:
     ax2.legend()
     st.pyplot(fig2)
 
-# === 5. ZAMAN SERİSİ GRAFİĞİ (GÖRSELLEŞTİRME) ===
+
 st.markdown("---")
 st.subheader("📊 λF Values for the Last 7 Days (Time Series)")
 
 
 
-# Örnek zaman serisi verisi (simüle edilmiş)
+
 dates = pd.date_range(end=pd.Timestamp.today(), periods=7)
 lambdaF_data = {
     "Bitcoin": [0.32, 0.35, 0.45, 0.52, 0.58, 0.62, lambda_F],  # Bugünkü lambda_F değeri sona eklendi
@@ -124,16 +124,12 @@ st.pyplot(fig)
 
 
 if not firebase_admin._apps:
-    # 1. Salt okunur secrets nesnesini al
     secrets_dict = st.secrets["firebase_key"]
 
-    # 2. Üzerinde değişiklik yapabilmek için normal bir Python sözlüğüne kopyala
     firebase_creds_copy = dict(secrets_dict)
 
-    # 3. KOPYA ÜZERİNDE private_key'i düzelt
     firebase_creds_copy['private_key'] = firebase_creds_copy['private_key'].replace('\\n', '\n')
 
-    # 4. Düzeltilmiş ve artık normal bir sözlük olan kopyayı kullan
     cred = credentials.Certificate(firebase_creds_copy)
     firebase_admin.initialize_app(cred)
 
@@ -176,7 +172,7 @@ if not df_history.empty:
 else:
     st.warning("No historical data available yet.")
 
-# 🧠 Kritik Gün Uyarı Motoru
+
 if lambda_F > 0.7:
     st.error(f"🚨 Critical Area: λF = {lambda_F:.3f} — Social unrest is high. Be careful!")
 elif lambda_F > 0.5:
@@ -186,14 +182,7 @@ else:
 
 status = "Kritik" if lambda_F > 0.7 else "Riskli" if lambda_F > 0.5 else "Normal"
 
-db.collection("lambdaF").add({
-    "timestamp": firestore.SERVER_TIMESTAMP,
-    "lambda_F": lambda_F,
-    "status": status
-})
 
-
-# lambda_f_dashboard.py
 from firebase_reader import get_lambda_f_data
 
 st.set_page_config(page_title="Lambda-F Dashboard", layout="centered")
